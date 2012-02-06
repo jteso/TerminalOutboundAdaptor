@@ -1,0 +1,30 @@
+package directlabs.experimental.springintegration.customadapters.outbound.config;
+
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.xml.ParserContext;
+import org.springframework.integration.config.xml.AbstractIntegrationNamespaceHandler;
+import org.springframework.integration.config.xml.AbstractOutboundChannelAdapterParser;
+import org.w3c.dom.Element;
+
+import directlabs.experimental.springintegration.customadapters.outbound.TerminalOutboundEndpoint;
+
+public class TerminalMessagingNamespaceHandler extends AbstractIntegrationNamespaceHandler{
+
+	@Override
+	public void init() {
+		registerBeanDefinitionParser("terminal-channel-adapter", new TerminalMessagingOutboundChannelAdapterParser());
+	}
+
+	public class TerminalMessagingOutboundChannelAdapterParser extends AbstractOutboundChannelAdapterParser {
+
+		@Override
+		protected AbstractBeanDefinition parseConsumer(Element element, ParserContext parserContext) {
+			BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(TerminalOutboundEndpoint.class);
+			return builder.getBeanDefinition();
+		}
+
+	}
+
+
+}
