@@ -2,7 +2,6 @@
 Example of how to extend spring integration by creating and packaging your own custom outbound adapter for reuse.
 
 ## How to use it
-
     <beans xmlns="http://www.springframework.org/schema/beans"
     	...
 	xmlns:int-ca="http://jteso.com/schema/integration"
